@@ -242,7 +242,7 @@ export default function CloudVaultApp() {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 lg:pl-72 flex flex-col min-w-0">
+      <div className="flex-1 lg:pl-64 flex flex-col min-w-0">
         {/* Navbar */}
         <Navbar
           activeTab={activeTab}
@@ -254,10 +254,11 @@ export default function CloudVaultApp() {
           onSearchChange={setSearchTerm}
           connectionStatus={connectionStatus}
           connectionMessage={connectionMessage}
+          region={stats?.region || "ap-south-1"}
         />
 
         {/* Content View Container */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 w-full space-y-6">
           {/* Missing Credentials Diagnostic Banner */}
           {connectionStatus === "disconnected" && (
             <div className="p-4 sm:p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-start gap-4 text-amber-200">
@@ -279,13 +280,14 @@ export default function CloudVaultApp() {
 
           {/* TAB: DASHBOARD */}
           {activeTab === "dashboard" && (
-            <div className="space-y-6 animate-in fade-in">
+            <div className="space-y-6">
               {/* Stat Cards */}
               <StatsCards
                 stats={stats}
                 isLoading={isLoading}
                 onViewFiles={() => setActiveTab("files")}
                 onOpenUpload={() => setIsUploadOpen(true)}
+                connectionStatus={connectionStatus}
               />
 
               {/* Storage Category Distribution */}
@@ -330,7 +332,7 @@ export default function CloudVaultApp() {
 
           {/* TAB: ALL FILES */}
           {activeTab === "files" && (
-            <div className="space-y-4 animate-in fade-in">
+            <div className="space-y-4">
               {/* Filter & Search Toolbar */}
               <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800 space-y-3">
                 {/* Search & Actions Row */}

@@ -1,7 +1,18 @@
 "use client";
 
 import React from "react";
-import { PieChart, Image, FileText, Film, Archive, Code, HelpCircle } from "lucide-react";
+import {
+  PieChart,
+  Image,
+  FileText,
+  Film,
+  Archive,
+  Code,
+  HelpCircle,
+  HardDrive,
+  ShieldCheck,
+  CloudLightning,
+} from "lucide-react";
 import { StorageStats, FileCategory } from "@/types/file";
 
 interface StorageBreakdownProps {
@@ -70,40 +81,59 @@ export function StorageBreakdown({ stats, onFilterCategory }: StorageBreakdownPr
   const totalFiles = stats?.totalFiles ?? 0;
 
   return (
-    <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
-      {/* Title */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-2">
-          <PieChart className="w-5 h-5 text-sky-400" />
-          <h2 className="text-base font-semibold text-white">
-            Storage Distribution by Category
-          </h2>
+    <div className="p-5 sm:p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-5 w-full">
+      {/* Top Header: Title & Architecture Overview */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800/80 pb-4">
+        <div className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-lg bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 shrink-0">
+            <PieChart className="w-4 h-4" />
+          </div>
+          <div>
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
+              Storage Overview & Distribution
+            </h2>
+            <p className="text-xs text-slate-400">
+              Categorized usage across Amazon S3 bucket objects
+            </p>
+          </div>
         </div>
-        <span className="text-xs text-slate-400 font-mono">
-          {totalFiles} total file{totalFiles === 1 ? "" : "s"}
-        </span>
+
+        {/* Architecture Pill */}
+        <div className="flex items-center gap-2 text-xs bg-slate-800/80 border border-slate-700/60 px-3 py-1.5 rounded-xl self-start sm:self-auto">
+          <CloudLightning className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+          <span className="text-slate-400">Architecture:</span>
+          <span className="font-mono text-slate-200 font-medium">Browser → Next.js → S3</span>
+        </div>
       </div>
 
       {/* Multi-segment Proportion Bar */}
-      <div className="w-full h-3 rounded-full bg-slate-800 overflow-hidden flex mb-6">
-        {totalFiles === 0 ? (
-          <div className="w-full h-full bg-slate-800/80" />
-        ) : (
-          categories.map((cat) => {
-            if (cat.percentage <= 0) return null;
-            return (
-              <div
-                key={cat.key}
-                style={{ width: `${Math.max(cat.percentage, 2)}%` }}
-                className={`h-full ${cat.bgBar} transition-all duration-500`}
-                title={`${cat.label}: ${cat.sizeFormatted} (${cat.percentage}%)`}
-              />
-            );
-          })
-        )}
+      <div>
+        <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
+          <span>Allocation by File Size</span>
+          <span className="font-mono text-slate-300 font-semibold">
+            {stats?.totalSizeFormatted || "0 B"} total
+          </span>
+        </div>
+        <div className="w-full h-2.5 rounded-full bg-slate-800 overflow-hidden flex">
+          {totalFiles === 0 ? (
+            <div className="w-full h-full bg-slate-800" />
+          ) : (
+            categories.map((cat) => {
+              if (cat.percentage <= 0) return null;
+              return (
+                <div
+                  key={cat.key}
+                  style={{ width: `${Math.max(cat.percentage, 2)}%` }}
+                  className={`h-full ${cat.bgBar} transition-all duration-300`}
+                  title={`${cat.label}: ${cat.sizeFormatted} (${cat.percentage}%)`}
+                />
+              );
+            })
+          )}
+        </div>
       </div>
 
-      {/* Category Grid */}
+      {/* Responsive Category Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {categories.map((cat) => {
           const Icon = cat.icon;
@@ -111,11 +141,11 @@ export function StorageBreakdown({ stats, onFilterCategory }: StorageBreakdownPr
             <button
               key={cat.key}
               onClick={() => onFilterCategory?.(cat.key)}
-              className="p-3 rounded-xl bg-slate-800/40 hover:bg-slate-800 border border-slate-700/50 hover:border-slate-600 transition-all text-left flex flex-col justify-between cursor-pointer group"
+              className="p-3 rounded-xl bg-slate-800/50 hover:bg-slate-800 border border-slate-700/60 hover:border-slate-600 transition-colors text-left flex flex-col justify-between cursor-pointer group"
             >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-1.5">
-                  <Icon className={`w-4 h-4 ${cat.color}`} />
+                  <Icon className={`w-3.5 h-3.5 ${cat.color} shrink-0`} />
                   <span className="text-xs font-medium text-slate-300 group-hover:text-white">
                     {cat.label}
                   </span>

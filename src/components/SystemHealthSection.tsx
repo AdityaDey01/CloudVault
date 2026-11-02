@@ -68,7 +68,7 @@ export function SystemHealthSection({
   ];
 
   return (
-    <div className="space-y-6 animate-in fade-in">
+    <div className="space-y-6">
       {/* S3 Connectivity Status Banner */}
       <div className="p-6 sm:p-8 rounded-3xl bg-slate-900/60 border border-slate-800 shadow-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <div className="flex items-start gap-4">

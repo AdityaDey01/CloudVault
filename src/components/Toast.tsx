@@ -54,7 +54,7 @@ function ToastItem({
   return (
     <div
       role="alert"
-      className={`pointer-events-auto flex items-start gap-3 p-4 rounded-xl border shadow-xl backdrop-blur-md transition-all duration-300 animate-in fade-in slide-in-from-bottom-2 ${borders[toast.type]}`}
+      className={`pointer-events-auto flex items-start gap-3 p-4 rounded-xl border shadow-xl backdrop-blur-md transition-all duration-200 ${borders[toast.type]}`}
     >
       {icons[toast.type]}
       <div className="flex-1 min-w-0">

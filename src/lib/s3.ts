@@ -32,8 +32,7 @@ let cachedS3Client: S3Client | null = null;
  * Never exposes the actual keys.
  */
 export function getS3ConfigStatus(): S3ConfigStatus {
-  const envRegion = process.env.AWS_REGION || "ap-southeast-2";
-  const region = resolvedRegion || envRegion;
+  const region = process.env.AWS_REGION || "ap-south-1";
   const bucketName = process.env.AWS_S3_BUCKET_NAME || "tushardevx01";
   const accessKeyId = process.env.AWS_ACCESS_KEY_ID || "";
   const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY || "";
@@ -71,7 +70,7 @@ export function getS3Client(): S3Client {
 
   if (!cachedS3Client) {
     cachedS3Client = new S3Client({
-      region: status.region,
+      region: resolvedRegion || status.region,
       credentials: {
         accessKeyId: process.env.AWS_ACCESS_KEY_ID!.trim(),
         secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!.trim(),
@@ -184,12 +183,11 @@ export async function testS3Connectivity(): Promise<{
       await client.send(new HeadBucketCommand({ Bucket: status.bucketName }));
     });
 
-    const activeRegion = resolvedRegion || status.region;
     return {
       connected: true,
-      message: `Successfully connected to Amazon S3 bucket "${status.bucketName}" (${activeRegion}).`,
+      message: `Successfully connected to Amazon S3 bucket "${status.bucketName}" (${status.region}).`,
       bucket: status.bucketName,
-      region: activeRegion,
+      region: status.region,
     };
   } catch (error: unknown) {
     const err = error as { name?: string; message?: string; $metadata?: { httpStatusCode?: number } };

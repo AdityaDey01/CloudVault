@@ -102,7 +102,7 @@ export function CloudVsLocalSection() {
   ];
 
   return (
-    <div className="space-y-8 animate-in fade-in">
+    <div className="space-y-8">
       {/* Overview Banner */}
       <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-slate-900 via-slate-900 to-indigo-950/40 border border-slate-800 shadow-xl relative overflow-hidden">
         <div className="max-w-3xl">
