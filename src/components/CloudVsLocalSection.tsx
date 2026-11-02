@@ -108,7 +108,7 @@ export function CloudVsLocalSection() {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-semibold mb-4">
             <Layers className="w-3.5 h-3.5" />
-            <span>Academic Demonstration Evaluation Guide • 25 Marks</span>
+            <span>Academic Demonstration Evaluation Guide.</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
             Local Storage vs. Cloud Object Storage

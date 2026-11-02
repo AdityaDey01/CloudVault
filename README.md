@@ -1,6 +1,6 @@
 # CloudVault ☁️
 > **Cloud-Based File Storage and Management System**  
-> *Academic Cloud Computing Project (25 Marks)*
+> *Academic Cloud Computing Project*
 
 [![Next.js](https://img.shields.io/badge/Next.js-16.4-black?style=flat&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
@@ -186,7 +186,7 @@ npm run dev
 
 ---
 
-## 🧪 7-Step Academic Demonstration Script (25 Marks)
+## 🧪 7-Step Academic Demonstration Script ()
 
 1. **Upload from Local Computer**:
    - Click **Upload New Files** or drag-and-drop any image, PDF, or document.

@@ -1,8 +1,8 @@
 # CloudVault — System Architecture & Technical Specifications
 
-> **Academic Cloud Computing Project (25 Marks)**  
+> **Academic Cloud Computing Project**  
 > **Target Cloud Provider**: Amazon Web Services (AWS) — Simple Storage Service (S3)  
-> **Bucket Name**: `tushardevx01`  
+> **Bucket Name**: `tushardevx01` 
 > **Region**: `ap-south-1` (with dynamic multi-region fallback to `ap-southeast-2`)  
 > **Architecture Pattern**: Mediated 3-Tier Cloud Object Storage (`Browser → Next.js API → AWS SDK → Private Amazon S3`)
 
@@ -10,7 +10,7 @@
 
 ## 1. Project Overview
 
-**CloudVault** is a minimal, cloud-based file storage and management web application designed as an academic Cloud Computing project worth 25 marks. 
+**CloudVault** is a minimal, cloud-based file storage and management web application designed as an academic Cloud Computing project. 
 
 In traditional computing environments, files reside on local block devices (Ext4, NTFS, APFS) bound to a single host operating system. CloudVault demonstrates how modern software decouples data persistence from application compute by leveraging **Amazon Simple Storage Service (Amazon S3)** as a durable, elastic, and globally accessible object store.
 
