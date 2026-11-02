@@ -50,7 +50,6 @@ export function Sidebar({
       id: "cloud-concepts" as ActiveTab,
       label: "Cloud vs Local",
       icon: Layers,
-      highlight: true,
     },
     {
       id: "system" as ActiveTab,
@@ -149,11 +148,6 @@ export function Sidebar({
                 {item.badge && (
                   <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">
                     {item.badge}
-                  </span>
-                )}
-                {item.highlight && !item.badge && (
-                  <span className="text-[9px] font-semibold px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 font-mono">
-                    25 Marks
                   </span>
                 )}
               </button>
