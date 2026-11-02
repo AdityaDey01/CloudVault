@@ -13,8 +13,9 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { StorageStats } from "@/types/file";
+import { ActiveTab, DEFAULT_BUCKET_NAME, DEFAULT_AWS_REGION } from "@/lib/constants";
 
-export type ActiveTab = "dashboard" | "files" | "cloud-concepts" | "system";
+export { type ActiveTab };
 
 interface SidebarProps {
   activeTab: ActiveTab;
@@ -95,7 +96,7 @@ export function Sidebar({
           </div>
           <button
             onClick={onClose}
-            className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="lg:hidden p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
             aria-label="Close navigation"
           >
             <X className="w-5 h-5" />
@@ -173,12 +174,12 @@ export function Sidebar({
               </span>
             </div>
             <div className="font-mono text-slate-200 bg-slate-900/90 px-2 py-1 rounded border border-slate-700/60 truncate text-[11px]">
-              {stats?.bucketName || "tushardevx01"}
+              {stats?.bucketName || DEFAULT_BUCKET_NAME}
             </div>
             <div className="flex items-center justify-between text-[11px] text-slate-400">
               <span>Region:</span>
               <span className="font-mono text-slate-300">
-                {stats?.region || "ap-south-1"}
+                {stats?.region || DEFAULT_AWS_REGION}
               </span>
             </div>
             <div className="flex items-center justify-between text-[11px] text-slate-400">

@@ -4,17 +4,13 @@ import React, { useEffect, useState } from "react";
 import {
   X,
   Download,
-  Calendar,
-  HardDrive,
-  FileCode,
-  ExternalLink,
   Loader2,
   Copy,
   Check,
   ShieldCheck,
 } from "lucide-react";
 import { S3FileItem } from "@/types/file";
-import { FileIcon } from "./FileIcon";
+import { FileIcon } from "../files/FileIcon";
 import { formatBytes, formatDate } from "@/lib/utils";
 
 interface FilePreviewModalProps {
@@ -55,7 +51,6 @@ export function FilePreviewModal({
     setIsLoadingPreview(true);
     setPreviewError(null);
 
-    // Fetch presigned preview URL from API
     fetch(
       `/api/files/preview?key=${encodeURIComponent(file.key)}&name=${encodeURIComponent(file.originalName)}`
     )
@@ -122,14 +117,14 @@ export function FilePreviewModal({
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => onDownload(file)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white text-xs font-semibold shadow-md shadow-sky-500/20 transition-all cursor-pointer"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-sky-500 hover:bg-sky-400 active:bg-sky-600 text-white text-xs font-semibold shadow-md shadow-sky-500/20 transition-all cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Download</span>
             </button>
             <button
               onClick={onClose}
-              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />
@@ -185,7 +180,7 @@ export function FilePreviewModal({
               </p>
               <button
                 onClick={() => onDownload(file)}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-medium transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-medium transition-all cursor-pointer"
               >
                 <Download className="w-4 h-4 text-sky-400" />
                 <span>Download Original ({formatBytes(file.size)})</span>
@@ -215,7 +210,7 @@ export function FilePreviewModal({
                 </span>
                 <button
                   onClick={copyKeyToClipboard}
-                  className="p-1 rounded text-slate-400 hover:text-white shrink-0"
+                  className="p-1 rounded text-slate-400 hover:text-white shrink-0 cursor-pointer"
                   title="Copy Key"
                 >
                   {copiedKey ? (

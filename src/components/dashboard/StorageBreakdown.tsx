@@ -9,8 +9,6 @@ import {
   Archive,
   Code,
   HelpCircle,
-  HardDrive,
-  ShieldCheck,
   CloudLightning,
 } from "lucide-react";
 import { StorageStats, FileCategory } from "@/types/file";

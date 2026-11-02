@@ -5,12 +5,12 @@ import {
   Files,
   HardDrive,
   Database,
-  ShieldCheck,
   ArrowUpRight,
   CheckCircle2,
   AlertTriangle,
 } from "lucide-react";
 import { StorageStats } from "@/types/file";
+import { DEFAULT_BUCKET_NAME, DEFAULT_AWS_REGION } from "@/lib/constants";
 
 interface StatsCardsProps {
   stats: StorageStats | null;
@@ -46,8 +46,8 @@ export function StatsCards({
     },
     {
       title: "Target S3 Bucket",
-      value: stats?.bucketName || "tushardevx01",
-      subtext: `Region: ${stats?.region || "ap-south-1"} (Private)`,
+      value: stats?.bucketName || DEFAULT_BUCKET_NAME,
+      subtext: `Region: ${stats?.region || DEFAULT_AWS_REGION} (Private)`,
       icon: Database,
       color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
       badge: "Private Access",

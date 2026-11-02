@@ -16,18 +16,23 @@ import {
   Clock,
   Sparkles,
 } from "lucide-react";
-import { Sidebar, ActiveTab } from "@/components/Sidebar";
-import { Navbar } from "@/components/Navbar";
-import { StatsCards } from "@/components/StatsCards";
-import { StorageBreakdown } from "@/components/StorageBreakdown";
-import { FileList } from "@/components/FileList";
-import { FileGrid } from "@/components/FileGrid";
-import { UploadModal } from "@/components/UploadModal";
-import { FilePreviewModal } from "@/components/FilePreviewModal";
-import { DeleteConfirmModal } from "@/components/DeleteConfirmModal";
-import { CloudVsLocalSection } from "@/components/CloudVsLocalSection";
-import { SystemHealthSection } from "@/components/SystemHealthSection";
-import { ToastContainer, ToastMessage } from "@/components/Toast";
+import {
+  Sidebar,
+  Navbar,
+  StatsCards,
+  StorageBreakdown,
+  FileList,
+  FileGrid,
+  UploadModal,
+  FilePreviewModal,
+  DeleteConfirmModal,
+  CloudVsLocalSection,
+  SystemHealthSection,
+  ToastContainer,
+  ToastMessage,
+  ActiveTab,
+} from "@/components";
+import { FILE_CATEGORIES } from "@/lib/constants";
 import { S3FileItem, StorageStats, FileCategory } from "@/types/file";
 
 export default function CloudVaultApp() {
@@ -216,16 +221,6 @@ export default function CloudVaultApp() {
     }
   };
 
-  const categoriesList: { id: FileCategory | "all"; label: string }[] = [
-    { id: "all", label: "All Files" },
-    { id: "image", label: "Images" },
-    { id: "document", label: "Documents" },
-    { id: "media", label: "Media" },
-    { id: "archive", label: "Archives" },
-    { id: "code", label: "Code" },
-    { id: "other", label: "Others" },
-  ];
-
   return (
     <div className="min-h-screen bg-[#0b0f17] text-slate-100 flex">
       {/* Toast System */}
@@ -412,7 +407,7 @@ export default function CloudVaultApp() {
 
                 {/* Category Pills */}
                 <div className="flex items-center gap-1.5 overflow-x-auto pb-1 pt-1">
-                  {categoriesList.map((cat) => {
+                  {FILE_CATEGORIES.map((cat) => {
                     const isSelected = categoryFilter === cat.id;
                     return (
                       <button

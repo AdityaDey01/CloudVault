@@ -190,14 +190,21 @@ To prevent accidental data loss, the user is prompted with an accessible confirm
 
 ```
 CloudVault/
+├── .github/                     # GitHub templates & automated CI workflows
+│   ├── PULL_REQUEST_TEMPLATE.md # Standardized PR description template
+│   └── workflows/
+│       └── ci.yml               # GitHub Actions CI (build & type-check)
 ├── .env                         # Single environment configuration file (STRICT: gitignored)
 ├── .gitignore                   # Excludes .env, node_modules, build outputs
 ├── AGENTS.md                    # Environment and tool instructions
 ├── ARCHITECTURE.md              # Detailed architecture & technical specification
+├── CONTRIBUTING.md              # Team collaboration, fork/clone/branch guidelines
+├── CONTRIBUTION.md              # Quick-link contribution reference
 ├── README.md                    # Setup, VirtualBox guide, and academic defense
 ├── next.config.ts               # Next.js build configuration
 ├── package.json                 # Project dependencies and npm scripts
 ├── package-lock.json            # Lockfile ensuring deterministic installs
+├── postcss.config.mjs           # PostCSS configuration with @tailwindcss/postcss
 ├── tsconfig.json                # TypeScript compiler configuration (strict: true)
 ├── public/                      # Static web assets
 └── src/
@@ -215,24 +222,31 @@ CloudVault/
     │   │   │   └── route.ts     # GET (S3 connectivity verification)
     │   │   └── stats/
     │   │       └── route.ts     # GET (aggregate storage metrics from S3)
-    │   ├── globals.css          # Tailwind CSS tokens, theme variables, and scrollbars
+    │   ├── globals.css          # Tailwind CSS imports and custom scrollbars
     │   ├── layout.tsx           # Root HTML structure with metadata
-    │   └── page.tsx             # Main client dashboard application
-    ├── components/              # Modular, reusable React UI components
-    │   ├── CloudVsLocalSection.tsx  # Academic storage comparison & checklist
-    │   ├── DeleteConfirmModal.tsx   # Deletion confirmation dialog
-    │   ├── FileGrid.tsx             # Grid card view of files
-    │   ├── FileIcon.tsx             # Category-specific Lucide icon mapper
-    │   ├── FileList.tsx             # Table view of files with actions
-    │   ├── FilePreviewModal.tsx     # Image/PDF lightbox viewer
-    │   ├── Navbar.tsx               # Top search and status navigation bar
-    │   ├── Sidebar.tsx              # Sidebar drawer with bucket stats
-    │   ├── StatsCards.tsx           # High-level metric KPI cards
-    │   ├── StorageBreakdown.tsx     # Visual category proportion bar
-    │   ├── SystemHealthSection.tsx  # AWS S3 connectivity diagnostics
-    │   ├── Toast.tsx                # Accessible floating notifications
-    │   └── UploadModal.tsx          # Multi-file drag-and-drop uploader
+    │   └── page.tsx             # Master Client Dashboard application
+    ├── components/              # Professional Domain-Separated UI Components
+    │   ├── dashboard/           # Dashboard widgets & telemetry
+    │   │   ├── CloudVsLocalSection.tsx  # Academic storage comparison & checklist
+    │   │   ├── StatsCards.tsx           # High-level metric KPI cards
+    │   │   ├── StorageBreakdown.tsx     # Visual category proportion bar
+    │   │   └── SystemHealthSection.tsx  # AWS S3 connectivity diagnostics
+    │   ├── files/               # File manager table, grid, and icons
+    │   │   ├── FileGrid.tsx             # Grid card view of files
+    │   │   ├── FileIcon.tsx             # Category-specific Lucide icon mapper
+    │   │   └── FileList.tsx             # Table view of files with actions
+    │   ├── layout/              # Page layout shells
+    │   │   ├── Navbar.tsx               # Top search and status navigation bar
+    │   │   └── Sidebar.tsx              # Sidebar drawer with bucket stats
+    │   ├── modals/              # Interactive user dialogs
+    │   │   ├── DeleteConfirmModal.tsx   # Deletion confirmation dialog
+    │   │   ├── FilePreviewModal.tsx     # Image/PDF lightbox viewer
+    │   │   └── UploadModal.tsx          # Multi-file drag-and-drop uploader
+    │   ├── ui/                  # Primitive UI alerts & notifications
+    │   │   └── Toast.tsx                # Accessible floating notifications
+    │   └── index.ts             # Clean barrel export for all components
     ├── lib/                     # Server-side utilities and AWS integration
+    │   ├── constants.ts         # Global limits, bucket defaults, categories
     │   ├── s3.ts                # S3Client, commands, auto-region resolution
     │   └── utils.ts             # Bytes formatter, categories, key sanitization
     └── types/

@@ -9,7 +9,7 @@ import {
   CheckCircle2,
   AlertTriangle,
 } from "lucide-react";
-import { ActiveTab } from "./Sidebar";
+import { ActiveTab, DEFAULT_AWS_REGION } from "@/lib/constants";
 
 interface NavbarProps {
   activeTab: ActiveTab;
@@ -34,7 +34,7 @@ export function Navbar({
   onSearchChange,
   connectionStatus,
   connectionMessage,
-  region = "ap-south-1",
+  region = DEFAULT_AWS_REGION,
 }: NavbarProps) {
   const titles: Record<ActiveTab, { title: string; subtitle: string }> = {
     dashboard: {
@@ -62,7 +62,7 @@ export function Navbar({
         <div className="flex items-center gap-3 min-w-0">
           <button
             onClick={onToggleSidebar}
-            className="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors shrink-0"
+            className="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors shrink-0 cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             <Menu className="w-5 h-5" />

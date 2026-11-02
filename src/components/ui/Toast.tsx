@@ -46,9 +46,9 @@ function ToastItem({
   };
 
   const borders = {
-    success: "border-emerald-500/30 bg-emerald-950/80 text-emerald-100",
-    error: "border-rose-500/30 bg-rose-950/80 text-rose-100",
-    info: "border-sky-500/30 bg-sky-950/80 text-sky-100",
+    success: "border-emerald-500/30 bg-emerald-950/90 text-emerald-100",
+    error: "border-rose-500/30 bg-rose-950/90 text-rose-100",
+    info: "border-sky-500/30 bg-sky-950/90 text-sky-100",
   };
 
   return (
@@ -67,7 +67,7 @@ function ToastItem({
       </div>
       <button
         onClick={() => onDismiss(toast.id)}
-        className="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+        className="p-1 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer"
         aria-label="Close notification"
       >
         <X className="w-4 h-4" />

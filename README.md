@@ -218,5 +218,15 @@ npm run dev
 
 ---
 
+## 👥 Contributing & Team Collaboration
+
+Please review [CONTRIBUTING.md](file:///home/tushardevx01/Documents/CloudVault/CONTRIBUTING.md) for full instructions on:
+- Forking and cloning the repository.
+- Team member branch naming conventions (`<member-name>/<category>-<feature>`).
+- S3 security practices and the strict single `.env` rule.
+- Running builds and opening Pull Requests.
+
+---
+
 ## 📄 License
 Academic Project developed for Cloud Computing Evaluation. All rights reserved.

@@ -4,16 +4,15 @@ import React, { useState, useRef } from "react";
 import {
   UploadCloud,
   X,
-  File,
   CheckCircle2,
   AlertCircle,
   Loader2,
   Trash2,
   Cloud,
 } from "lucide-react";
-import { formatBytes } from "@/lib/utils";
-import { FileIcon } from "./FileIcon";
-import { getFileCategory } from "@/lib/utils";
+import { formatBytes, getFileCategory } from "@/lib/utils";
+import { FileIcon } from "../files/FileIcon";
+import { MAX_FILE_SIZE_BYTES, DEFAULT_BUCKET_NAME, DEFAULT_AWS_REGION } from "@/lib/constants";
 
 interface UploadModalProps {
   isOpen: boolean;
@@ -33,8 +32,6 @@ interface QueuedFile {
   errorMessage?: string;
 }
 
-const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
-
 export function UploadModal({
   isOpen,
   onClose,
@@ -53,8 +50,7 @@ export function UploadModal({
     const newItems: QueuedFile[] = [];
 
     Array.from(files).forEach((file) => {
-      // Validate file size
-      if (file.size > MAX_FILE_SIZE) {
+      if (file.size > MAX_FILE_SIZE_BYTES) {
         onAddToast({
           type: "error",
           title: "File Exceeds Limit",
@@ -117,16 +113,11 @@ export function UploadModal({
 
     setIsUploading(true);
 
-    let successCount = 0;
-    let failCount = 0;
-
-    // Upload files sequentially or batch
     const formData = new FormData();
     pendingFiles.forEach((item) => {
       formData.append("files", item.file);
     });
 
-    // Mark as uploading
     setQueue((prev) =>
       prev.map((item) =>
         item.status === "idle" ? { ...item, status: "uploading" } : item
@@ -142,7 +133,7 @@ export function UploadModal({
       const result = await response.json();
 
       if (response.ok && result.success) {
-        successCount = result.uploaded?.length || pendingFiles.length;
+        const successCount = result.uploaded?.length || pendingFiles.length;
         setQueue((prev) =>
           prev.map((item) => ({ ...item, status: "success" }))
         );
@@ -157,7 +148,6 @@ export function UploadModal({
           setQueue([]);
         }, 1200);
       } else {
-        failCount = pendingFiles.length;
         setQueue((prev) =>
           prev.map((item) => ({
             ...item,
@@ -206,14 +196,14 @@ export function UploadModal({
                 Upload to Amazon S3
               </h2>
               <p className="text-xs text-slate-400">
-                Target Bucket: <span className="text-slate-200 font-mono">tushardevx01</span> (ap-south-1)
+                Target Bucket: <span className="text-slate-200 font-mono">{DEFAULT_BUCKET_NAME}</span> ({DEFAULT_AWS_REGION})
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
             disabled={isUploading}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors disabled:opacity-40"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors disabled:opacity-40 cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -266,7 +256,7 @@ export function UploadModal({
                 {!isUploading && (
                   <button
                     onClick={clearQueue}
-                    className="text-rose-400 hover:text-rose-300 transition-colors"
+                    className="text-rose-400 hover:text-rose-300 transition-colors cursor-pointer"
                   >
                     Clear all
                   </button>
@@ -323,7 +313,7 @@ export function UploadModal({
                         {item.status === "idle" && !isUploading && (
                           <button
                             onClick={() => removeQueuedFile(item.id)}
-                            className="p-1 rounded text-slate-400 hover:text-rose-400 transition-colors"
+                            className="p-1 rounded text-slate-400 hover:text-rose-400 transition-colors cursor-pointer"
                             aria-label="Remove file"
                           >
                             <Trash2 className="w-3.5 h-3.5" />
@@ -343,14 +333,14 @@ export function UploadModal({
           <button
             onClick={onClose}
             disabled={isUploading}
-            className="px-4 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors disabled:opacity-50"
+            className="px-4 py-2 rounded-xl text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 transition-colors disabled:opacity-50 cursor-pointer"
           >
             Cancel
           </button>
           <button
             onClick={startUpload}
             disabled={isUploading || queue.length === 0}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 disabled:bg-slate-800 disabled:text-slate-500 text-white text-xs font-semibold shadow-md shadow-sky-500/20 transition-all cursor-pointer disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 active:bg-sky-600 disabled:bg-slate-800 disabled:text-slate-500 text-white text-xs font-semibold shadow-md shadow-sky-500/20 transition-all cursor-pointer disabled:cursor-not-allowed"
           >
             {isUploading ? (
               <>
