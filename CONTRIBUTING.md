@@ -135,6 +135,16 @@ Every team member must work in an isolated branch named after their **first name
 <member-name>/<category>-<feature-description>
 ```
 
+### Core Project Team & Branch Namespaces:
+| Member Name | Branch Namespace Prefix | Example Working Branch |
+| :--- | :--- | :--- |
+| **Aditya** | `aditya/` | `aditya/feat-search-filters` |
+| **Purabi** | `purabi/` | `purabi/ui-preview-modal-enhancements` |
+| **Sankalpa** | `sankalpa/` | `sankalpa/feat-s3-multipart-upload` |
+| **Dabjit** | `dabjit/` | `dabjit/fix-storage-stats-calculation` |
+| **Shankar** | `shankar/` | `shankar/docs-ubuntu-vm-deployment` |
+| **Tushar** | `tushar/` | `tushar/refactor-api-route-handlers` |
+
 ### Allowed Categories:
 - `feat`: New feature or user interaction
 - `fix`: Bug fix or layout repair
@@ -143,22 +153,31 @@ Every team member must work in an isolated branch named after their **first name
 - `refactor`: Code reorganization without functional changes
 - `test`: Automated or manual test additions
 
-### Examples for Team Members:
+### Team Member Commands:
 ```bash
-# If your name is Tushar:
+# Aditya:
+git checkout -b aditya/feat-file-tagging
+git checkout -b aditya/fix-search-debounce
+
+# Purabi:
+git checkout -b purabi/ui-storage-breakdown-card
+git checkout -b purabi/fix-mobile-navbar-drawer
+
+# Sankalpa:
+git checkout -b sankalpa/feat-pdf-preview-zoom
+git checkout -b sankalpa/refactor-s3-client-config
+
+# Dabjit:
+git checkout -b dabjit/feat-storage-metrics-export
+git checkout -b dabjit/test-s3-upload-limits
+
+# Shankar:
+git checkout -b shankar/docs-demonstration-runbook
+git checkout -b shankar/test-virtualbox-ubuntu-sync
+
+# Tushar:
 git checkout -b tushar/feat-bulk-file-download
 git checkout -b tushar/fix-s3-upload-timeout
-
-# If your name is Rahul:
-git checkout -b rahul/ui-storage-breakdown-card
-git checkout -b rahul/fix-mobile-navbar-drawer
-
-# If your name is Priya:
-git checkout -b priya/feat-pdf-preview-zoom
-git checkout -b priya/docs-viva-demonstration-guide
-
-# If your name is Aman:
-git checkout -b aman/test-virtualbox-ubuntu-sync
 ```
 
 Always ensure your branch is created from the latest `upstream/main`:

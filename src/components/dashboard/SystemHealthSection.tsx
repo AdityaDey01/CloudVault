@@ -12,6 +12,8 @@ import {
   Lock,
   Globe,
   FileCode,
+  Users,
+  GitBranch,
 } from "lucide-react";
 import { StorageStats } from "@/types/file";
 
@@ -190,6 +192,76 @@ export function SystemHealthSection({
                   {sec.desc}
                 </p>
               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Engineering Team & Branch Namespaces */}
+      <div className="p-6 rounded-3xl bg-slate-900/60 border border-slate-800">
+        <div className="flex items-center gap-3 mb-5">
+          <div className="w-9 h-9 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+            <Users className="w-5 h-5" />
+          </div>
+          <div>
+            <h3 className="text-base font-bold text-white">
+              Project Engineering Team
+            </h3>
+            <p className="text-xs text-slate-400">
+              Core contributors and designated Git branch namespaces
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
+          {[
+            {
+              name: "Aditya",
+              role: "Search, Filtering & Core Features",
+              branch: "aditya/*",
+            },
+            {
+              name: "Purabi",
+              role: "UI/UX & Design Hierarchy",
+              branch: "purabi/*",
+            },
+            {
+              name: "Sankalpa",
+              role: "AWS S3 & Backend API Routes",
+              branch: "sankalpa/*",
+            },
+            {
+              name: "Dabjit",
+              role: "Storage Metrics & QA Testing",
+              branch: "dabjit/*",
+            },
+            {
+              name: "Shankar",
+              role: "Cloud Security & VM Deployment",
+              branch: "shankar/*",
+            },
+            {
+              name: "Tushar",
+              role: "Lead Architect & AWS Operations",
+              branch: "tushar/*",
+            },
+          ].map((member, idx) => (
+            <div
+              key={idx}
+              className="p-4 rounded-2xl bg-slate-800/40 border border-slate-700/50 flex flex-col justify-between"
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-white">
+                  {member.name}
+                </span>
+                <span className="flex items-center gap-1 text-[10px] font-mono px-2 py-0.5 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                  <GitBranch className="w-3 h-3" />
+                  {member.branch}
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-400 mt-2">
+                {member.role}
+              </p>
             </div>
           ))}
         </div>

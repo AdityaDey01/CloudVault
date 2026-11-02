@@ -218,9 +218,24 @@ npm run dev
 
 ---
 
-## 👥 Contributing & Team Collaboration
+## 👥 Project Team & Contributors
 
-Please review [CONTRIBUTING.md](file:///home/tushardevx01/Documents/CloudVault/CONTRIBUTING.md) for full instructions on:
+CloudVault is engineered and maintained by:
+
+| Member Name | Role & Responsibility | Git Branch Prefix |
+| :--- | :--- | :--- |
+| **Aditya** | Search, Filtering & Core Feature Engineering | `aditya/` |
+| **Purabi** | Frontend UI/UX, Component Hierarchy & Design System | `purabi/` |
+| **Sankalpa** | AWS S3 Integration, Multipart Streaming & Backend APIs | `sankalpa/` |
+| **Dabjit** | Storage Metrics, Data Telemetry & QA Testing | `dabjit/` |
+| **Shankar** | Cloud Security Auditing, VM Deployment & Documentation | `shankar/` |
+| **Tushar** (@tushardevx01) | Project Lead & Cloud System Architecture | `tushar/` |
+
+---
+
+## 🤝 Contributing & Team Collaboration
+
+Please review [CONTRIBUTION.md](file:///home/tushardevx01/Documents/CloudVault/CONTRIBUTION.md) and [CONTRIBUTING.md](file:///home/tushardevx01/Documents/CloudVault/CONTRIBUTING.md) for full instructions on:
 - Forking and cloning the repository.
 - Team member branch naming conventions (`<member-name>/<category>-<feature>`).
 - S3 security practices and the strict single `.env` rule.

@@ -466,3 +466,19 @@ To prove cloud decoupling during university evaluation:
 - **Spacing**: Consistent 4px grid (`p-3`, `p-4`, `p-6`, `gap-3`, `gap-4`, `gap-6`).
 - **Border Radii**: Cards (`rounded-2xl`), Modals (`rounded-3xl`), Buttons & Inputs (`rounded-xl`), Badges (`rounded-lg` / `rounded-full`).
 - **Transitions**: Restrained `duration-200 ease-in-out` for hover and focus states.
+
+---
+
+## 18. Engineering Team & Collaboration Model
+
+CloudVault is built by a collaborative 6-member engineering team. Each member owns specific sub-domains of the cloud storage architecture and utilizes isolated branch namespaces:
+
+| Member | Architectural Domain | Git Branch Prefix |
+| :--- | :--- | :--- |
+| **Aditya** | Search, Filtering & Core Feature Engineering | `aditya/` |
+| **Purabi** | Frontend UI/UX, Component Hierarchy & Design Tokens | `purabi/` |
+| **Sankalpa** | AWS S3 Integration, Multipart Streaming & Backend APIs | `sankalpa/` |
+| **Dabjit** | Storage Metrics, Data Telemetry & QA Testing | `dabjit/` |
+| **Shankar** | Cloud Security Auditing, VM Deployment & Documentation | `shankar/` |
+| **Tushar** (@tushardevx01) | Project Lead & Cloud System Architecture | `tushar/` |
+
