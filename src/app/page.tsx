@@ -318,6 +318,7 @@ export default function CloudVaultApp() {
 
                 <FileList
                   files={files.slice(0, 5)}
+                  isLoading={isLoading}
                   onPreview={(f) => setPreviewFile(f)}
                   onDownload={handleDownload}
                   onDelete={(f) => setDeleteTargetFile(f)}
@@ -450,6 +451,7 @@ export default function CloudVaultApp() {
               {viewMode === "table" ? (
                 <FileList
                   files={processedFiles}
+                  isLoading={isLoading}
                   onPreview={(f) => setPreviewFile(f)}
                   onDownload={handleDownload}
                   onDelete={(f) => setDeleteTargetFile(f)}
@@ -458,9 +460,11 @@ export default function CloudVaultApp() {
               ) : (
                 <FileGrid
                   files={processedFiles}
+                  isLoading={isLoading}
                   onPreview={(f) => setPreviewFile(f)}
                   onDownload={handleDownload}
                   onDelete={(f) => setDeleteTargetFile(f)}
+                  onOpenUpload={() => setIsUploadOpen(true)}
                 />
               )}
             </div>

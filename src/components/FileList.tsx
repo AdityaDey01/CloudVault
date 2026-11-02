@@ -8,6 +8,7 @@ import { formatBytes, formatDate, formatRelativeTime } from "@/lib/utils";
 
 interface FileListProps {
   files: S3FileItem[];
+  isLoading?: boolean;
   onPreview: (file: S3FileItem) => void;
   onDownload: (file: S3FileItem) => void;
   onDelete: (file: S3FileItem) => void;
@@ -16,6 +17,7 @@ interface FileListProps {
 
 export function FileList({
   files,
+  isLoading,
   onPreview,
   onDownload,
   onDelete,
@@ -29,6 +31,52 @@ export function FileList({
     setCopiedKey(key);
     setTimeout(() => setCopiedKey(null), 2000);
   };
+
+  if (isLoading) {
+    return (
+      <div className="overflow-x-auto rounded-2xl border border-slate-800 bg-slate-900/60 shadow-xs">
+        <table className="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr className="border-b border-slate-800 bg-slate-900/80 text-slate-400 font-semibold uppercase tracking-wider">
+              <th className="py-3.5 px-4 sm:px-6">Name</th>
+              <th className="py-3.5 px-4">Size</th>
+              <th className="py-3.5 px-4 hidden md:table-cell">Type</th>
+              <th className="py-3.5 px-4 hidden lg:table-cell">Uploaded</th>
+              <th className="py-3.5 px-4 hidden xl:table-cell">S3 Object Key</th>
+              <th className="py-3.5 px-4 text-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-800/60">
+            {[...Array(5)].map((_, i) => (
+              <tr key={i} className="animate-pulse">
+                <td className="py-3.5 px-4 sm:px-6">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 rounded-lg bg-slate-800 shrink-0" />
+                    <div className="h-3.5 bg-slate-800 rounded w-44" />
+                  </div>
+                </td>
+                <td className="py-3.5 px-4">
+                  <div className="h-3.5 bg-slate-800 rounded w-14" />
+                </td>
+                <td className="py-3.5 px-4 hidden md:table-cell">
+                  <div className="h-4 bg-slate-800 rounded w-16" />
+                </td>
+                <td className="py-3.5 px-4 hidden lg:table-cell">
+                  <div className="h-3.5 bg-slate-800 rounded w-20" />
+                </td>
+                <td className="py-3.5 px-4 hidden xl:table-cell">
+                  <div className="h-3.5 bg-slate-800 rounded w-36" />
+                </td>
+                <td className="py-3.5 px-4 text-right">
+                  <div className="h-7 bg-slate-800 rounded w-20 ml-auto" />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
 
   if (files.length === 0) {
     return (
