@@ -65,3 +65,4 @@ export function isAdminAuthenticated(request: NextRequest): boolean {
 }
 
 export { COOKIE_NAME, SESSION_MAX_AGE_SECONDS };
+
