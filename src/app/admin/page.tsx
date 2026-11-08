@@ -38,8 +38,8 @@ export default function AdminPage() {
   // Auth state
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [usernameInput, setUsernameInput] = useState("admin");
-  const [passwordInput, setPasswordInput] = useState("Adamas@2023");
+  const [usernameInput, setUsernameInput] = useState("");
+  const [passwordInput, setPasswordInput] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
 
@@ -400,7 +400,7 @@ export default function AdminPage() {
                   required
                   value={usernameInput}
                   onChange={(e) => setUsernameInput(e.target.value)}
-                  placeholder="admin"
+                  placeholder="Enter admin username"
                   className="w-full bg-slate-800 border border-slate-700 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-sky-500 transition-colors"
                 />
               </div>
@@ -430,19 +430,6 @@ export default function AdminPage() {
                     )}
                   </button>
                 </div>
-              </div>
-
-              <div className="p-3 rounded-xl bg-slate-800/50 border border-slate-700/60 text-[11px] text-slate-400 space-y-1">
-                <div className="flex items-center gap-1.5 text-slate-300 font-semibold">
-                  <Lock className="w-3.5 h-3.5 text-sky-400" />
-                  <span>Academic Evaluation Credential:</span>
-                </div>
-                <p>
-                  Password is stored and verified via MongoDB:{" "}
-                  <code className="text-sky-300 font-mono bg-slate-900 px-1 py-0.5 rounded border border-slate-700">
-                    Adamas@2023
-                  </code>
-                </p>
               </div>
 
               <button
